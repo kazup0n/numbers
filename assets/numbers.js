@@ -15,14 +15,14 @@ $(function () {
     const leg = extract_numbers_from('#leg-group')
     const target = Number($('#target').val())
     const results = [];
-    for (let h = 0; h < head.length; h++) { 
-      for (let a = 0; a < arm.length; a++) { 
-        for (let b = 0; b < body.length; b++) { 
-          for (let l = 0; l < leg.length; l++) { 
+    for (let h = 0; h < head.length; h++) {
+      for (let a = 0; a < arm.length; a++) {
+        for (let b = 0; b < body.length; b++) {
+          for (let l = 0; l < leg.length; l++) {
             const sum = head[h] + arm[a] + body[b] + leg[l]
             const score = Math.abs(target - sum)
-            const params = { h: head[h], a: arm[a], b: body[b], l: leg[l]}
-            results.push({sum, score, params})
+            const params = { h: head[h], a: arm[a], b: body[b], l: leg[l] }
+            results.push({ sum, score, params })
           }
         }
       }
