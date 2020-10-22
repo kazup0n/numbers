@@ -1,46 +1,38 @@
 $(function () {
-  const NUM_PER_PARTS = 6;
 
-  function generateNumbers() { 
-    const b = new Array(NUM_PER_PARTS);
-    b[0] = 0; b[NUM_PER_PARTS] = 100;
-    for (let i = 1; i < NUM_PER_PARTS; i++) { 
-      b[i] = Math.round(Math.random() * 99);
-    }
-    const sliced = b.slice(1, NUM_PER_PARTS);
-    sliced.sort((a, b) => a - b);
-  
-    for (let i = 1; i <= NUM_PER_PARTS - 1; i++) { 
-      //b[1] = sliced[0]
-      //b[2] = sliced[1]
-      //b[NUM_PER_PARTS-2] = sliced[NUM_PER_PARTS-3]
-      console.log(sliced[i-1])
-      b[i] = sliced[i-1]
-    }
-  
-    const a = new Array(NUM_PER_PARTS)
-    for (let i = 1; i <= NUM_PER_PARTS; i++) {
-      a[i - 1] = b[i] - b[i - 1]
-    }
-    return a
+  function extract_numbers_from(id) {
+    return $(id).find('input').map((_, t) => $(t).val())
+      .toArray()
+      .filter(n => !!n)
+      .map(n => Number(n))
+      .filter(n => !isNaN(n))
   }
 
-  function generateRows(part) { 
-    const ns = generateNumbers()
-    return ns.map((n, i) => '<tr>' + [part, i+1, n].map(s => `<td>${s}</td>`).join('') + '</tr>').join("\n")
-  }
-  
-  function refresh() { 
-    const tbl = $('#tbl-body')
-    tbl.empty()
-    //head
-    tbl.append(generateRows('head'))
-    tbl.append(generateRows('body'))
-    tbl.append(generateRows('leg'))
-    tbl.append(generateRows('???'))
-  }
+  $('#create-btn').on('click', () => {
+    const head = extract_numbers_from('#head-group')
+    const arm = extract_numbers_from('#arm-group')
+    const body = extract_numbers_from('#body-group')
+    const leg = extract_numbers_from('#leg-group')
+    const target = Number($('#target').val())
+    const results = [];
+    for (let h = 0; h < head.length; h++) {
+      for (let a = 0; a < arm.length; a++) {
+        for (let b = 0; b < body.length; b++) {
+          for (let l = 0; l < leg.length; l++) {
+            const sum = head[h] + arm[a] + body[b] + leg[l]
+            const score = Math.abs(target - sum)
+            const params = { h: head[h], a: arm[a], b: body[b], l: leg[l] }
+            results.push({ sum, score, params })
+          }
+        }
+      }
+    }//end of for
+    results.sort((r1, r2) => r1.score - r2.score)
+    const resultTxt = results.slice(0, 5)
+      .map((r, i) => `<li>(計 ${r.sum}). 頭: ${r.params.h}, 腕: ${r.params.a}, 体: ${r.params.b}, 脚: ${r.params.l}</li>`)
+      .join('')
+    $('#result').empty().html(`<ol>${resultTxt}</ol>`)
+  })
+}
 
-  $('#create-btn').on('click', refresh)
-  refresh()
-
-})
+)

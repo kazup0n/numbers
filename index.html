@@ -14,20 +14,121 @@
 <body>
   <div class="container-fluid">
     <h1 class="title">nine_of_heartの頭痛の種解消機</h1>
-    <button class="btn btn-primary" id="create-btn">Shuffle</button>
-    <div class="table-responsive-sm">
-      <table class="table table-sm table-bordered table-striped">
-        <thead class="thead-dark">
-          <tr>
-            <th>パーツ</th>
-            <th>#</th>
-            <th>値</th>
-          </tr>
-        </thead>
-        <tbody id="tbl-body">
-        </tbody>
-      </table>
+    <form>
+      <div class="form-row align-items-center">
+        <div class="col-sm-auto">
+          <label class="col-form-label">目標値</label>
+          <input type="number" id="target" max="100" min="0" step="1" value="0" />
+          <button class="btn btn-primary" id="create-btn" type="button">Go</button>
+          <input type="reset" class="btn btn-secondary">
+        </div>
+      </div>
+      <!--頭 -->
+      <div class="form-row align-items-center" id="head-group">
+        <div class="col-sm-auto">
+          <label class="col-form-label">頭</label>
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+      </div>
+
+
+      <!--腕 -->
+      <div class="form-row align-items-center" id="arm-group">
+        <div class="col-sm-auto">
+          <label class="col-form-label">腕</label>
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+      </div>
+
+      <!--体 -->
+      <div class="form-row align-items-center" id="body-group">
+        <div class="col-sm-auto">
+          <label class="col-form-label">体</label>
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+      </div>
+
+      <!-- 脚 -->
+      <div class="form-row align-items-center" id="leg-group">
+        <div class="col-sm-auto">
+          <label class="col-form-label">脚</label>
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+        <div class="col-sm-auto">
+          <input type="number" max="100" min="0" step="1" />
+        </div>
+      </div>
+    </form>
+
+    <div class="alert alert-primary" role="alert" id="result">
     </div>
+
+  </div>
   </div>
 
   <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
